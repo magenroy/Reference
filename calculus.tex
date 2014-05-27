@@ -2,12 +2,14 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\numberwithin{equation}{subsubsection}
+
 \title{Calculus Reference Sheet}
 \author{Roy Magen}
 \date{ }
 \begin{document}
 
-	\newcommand{\differ}{\text{d}}
+	\newcommand{\differ}{d}
 
 	\newcommand{\derivative}[2][x]{\frac{\differ #2}{\differ #1}}
 	\newcommand{\integral}[2][x]{\int #2\,\differ #1}
@@ -25,31 +27,49 @@
 	\section{General}
 		\subsection{Fundamental Theorem}
 			\begin{gather}
-				\integral{_a^b f(x)} = \integral[b]{f(b)} - \integral[a]{f(a)} \\
+				\integral{_a^b f(x)} = \integral[b]{f(b)} - \integral[a]{f(a)}
 			\end{gather}
 	\section{Differentiation}
-		\subsection{Linearity}
-			\begin{gather}
-				\derivative{af(x)} = a\derivative{f(x)} \\
-				\derivative{f(x) + g(x)} = \derivative{f(x)} +
-				\derivative{g(x)} \\
-				\therefore \derivative{af(x) + bg(x)} = a\derivative{f(x)}
-				+ b\derivative{g(x)}
-			\end{gather}
 		\subsection{Methods}
 			\subsubsection{First Principles}
 				\begin{gather}
-					\derivative{f(x)} = \frac{f(x + h) -
-					f(x)}{h}
+					\derivative{f(x)} = \lim_{h \,\to\, 0} \frac{f(x + h) - f(x)}{h}
+				\end{gather}
+			\subsubsection{Linearity}
+				\begin{gather}
+					\derivative{af(x)} = a\derivative{f(x)} \\
+					\derivative{f(x) + g(x)} = \derivative{f(x)} +
+					\derivative{g(x)} \\
+					\therefore \derivative{af(x) + bg(x)} = a\derivative{f(x)}
+					+ b\derivative{g(x)}
 				\end{gather}
 			\subsubsection{Power Rule}
 				\begin{gather}
+					\text{where } n = 0 \\
+					\derivative{x^n} = \derivative{1} \\
+					= \lim_{h \,\to\, 0} \frac{(1 + h) - 1}{h} \\
+					= \lim_{h \,\to\, 0} \frac{h}{h} \\
+					= 1 \\ \nonumber
+					\\
+					\text{where } n \neq 0 \\
+					\derivative{x^n} = \lim_{h \,\to\, 0} \frac{(x+h)^n - x^n}{h} \\
+					= \lim_{h \,\to\, 0} \frac{\sum_{k=0}^n \binom{n}{k}
+					x^{n-k}h^k - x^n}{h} \\
+					= \lim_{h \,\to\, 0} \frac{\sum_{k=1}^n \binom{n}{k}
+					x^{n-k}h^k}{h} \\
+					= \lim_{h \,\to\, 0} \sum_{k=1}^n \binom{n}{k} x^{n-k}h^{k-1} \\
+					= \lim_{h \,\to\, 0} \binom{n}{1} x^{n-1} + \sum_{k=2}^n
+					x^{n-k}h^{k-1} \\
+					= nx^{n-1} \\ \nonumber
+					\\
+					\boxed{
 					\derivative{x^n} =
 						\begin{cases}
 							0 & \text{if } n = 0 \\
 							nx^{n-1} & \text{if } n
 							\neq 0
 						\end{cases}
+					}
 				\end{gather}
 			\subsubsection{Product Rule}
 				\begin{gather}
@@ -69,7 +89,7 @@
 				\end{gather}
 		\subsection{Exonential and Logarithmic}
 			\begin{gather}
-				e = \lim_{n \to \infty} \left(1 +
+				e = \lim_{n \,\to\, \infty} \left(1 +
 				\frac{1}{n}\right)^n
 			\end{gather}
 			\subsubsection{Exponential}
@@ -84,7 +104,7 @@
 				\end{gather}
 		\subsection{Trigonometric}
 			\begin{gather}
-				\lim_{\theta \to 0} \frac{\sin \theta}{\theta} =
+				\lim_{\theta \,\to\, 0} \frac{\sin \theta}{\theta} =
 				1
 			\end{gather}
 			\subsubsection{Functions}
@@ -116,15 +136,15 @@
 					\derivative{\arccot x} = \frac{-1}{x^2 + 1}
 				\end{gather}
 	\section{Integration}
-		\subsection{Linearity}
-			\begin{gather}
-				\integral{af(x)} = a\integral{f(x)} \\
-				\integral{f(x) + g(x)} = \integral{f(x)} +
-				\integral{g(x)} \\
-				\therefore \integral{af(x) + bg(x)} = a\integral{f(x)}
-				+ b\integral{g(x)}
-			\end{gather}
 		\subsection{Methods}
+			\subsubsection{Linearity}
+				\begin{gather}
+					\integral{af(x)} = a\integral{f(x)} \\
+					\integral{f(x) + g(x)} = \integral{f(x)} +
+					\integral{g(x)} \\
+					\therefore \integral{af(x) + bg(x)} = a\integral{f(x)}
+					+ b\integral{g(x)}
+				\end{gather}
 			\subsubsection{Power Rule}
 				\begin{gather}
 					\integral{x^n} =
@@ -151,7 +171,7 @@
 					= f(x)g(x) - \integral{\derivative{f(x)}g(x)}
 					\\
 					\integral{f(x)g(x)} = f(x)\integral{g(x)}
-					- \integral{\integral{g(x)}\derivative{f(x)}}
+					- \integral{\integral{g(x)}\,\derivative{f(x)}}
 				\end{gather}
 		\subsection{Exponential and Logarithmic}
 			\subsubsection{Exponential}
@@ -161,28 +181,23 @@
 				\end{gather}
 			\subsubsection{Logarithmic}
 				\begin{gather}
-					\integral{\ln x} = x(\ln x - 1) + C
-					\qquad a \neq 0 \\
+					\integral{\ln x} = x(\ln x - 1) + C \\
 					\integral{\log_ax} = x(\log_ax - \ln a) +
 					C \qquad a \neq 0
 				\end{gather}
 		\subsection{Trigonometric}
 			\subsubsection{Functions}
 				\begin{gather}
-					\integral{\sin ax} = \frac{-\cos ax}{a} +
-					C \qquad a \neq 0 \\
-					\integral{\cos ax} = \frac{\sin ax}{a} +
-					C \qquad a \neq 0 \\
-					\integral{\tan ax} = \frac{-\ln |\cos
-					ax|}{a} + C \qquad a \neq 0 \\
-					= \frac{\ln |\sec ax|}{a} + C \qquad a
-					\neq 0
+					\integral{\sin x} = -\cos x + C \\
+					\integral{\cos x} = \sin x + C \\
+					\integral{\tan x} = -\ln |\cos x| + C \\
+					= \ln |\sec x| + C
 				\end{gather}
 			\subsubsection{Reciprocal Functions}
 				\begin{gather}
-					\integral{\csc ax} =
-					\integral{\sec ax} =
-					\integral{\cot ax} =
+					\integral{\csc x} =
+					\integral{\sec x} =
+					\integral{\cot x} =
 				\end{gather}
 			\subsubsection{Inverse Functions}
 				\begin{gather}
