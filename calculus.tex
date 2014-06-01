@@ -4,7 +4,7 @@
 
 \numberwithin{equation}{subsubsection}
 
-\title{Calculus Reference Sheet}
+\title{Calculus Reference}
 \author{Roy Magen}
 \date{ }
 \begin{document}
@@ -24,11 +24,13 @@
 	\tableofcontents
 	\pagebreak
 
+
 	\section{General}
 		\subsection{Fundamental Theorem}
 			\begin{gather}
 				\integral{_a^b f(x)} = \integral[b]{f(b)} - \integral[a]{f(a)}
 			\end{gather}
+
 	\section{Differentiation}
 		\subsection{Methods}
 			\subsubsection{First Principles}
@@ -45,31 +47,12 @@
 				\end{gather}
 			\subsubsection{Power Rule}
 				\begin{gather}
-					\text{where } n = 0 \\
-					\derivative{x^n} = \derivative{1} \\
-					= \lim_{h \,\to\, 0} \frac{(1 + h) - 1}{h} \\
-					= \lim_{h \,\to\, 0} \frac{h}{h} \\
-					= 1 \\ \nonumber
-					\\
-					\text{where } n \neq 0 \\
-					\derivative{x^n} = \lim_{h \,\to\, 0} \frac{(x+h)^n - x^n}{h} \\
-					= \lim_{h \,\to\, 0} \frac{\sum_{k=0}^n \binom{n}{k}
-					x^{n-k}h^k - x^n}{h} \\
-					= \lim_{h \,\to\, 0} \frac{\sum_{k=1}^n \binom{n}{k}
-					x^{n-k}h^k}{h} \\
-					= \lim_{h \,\to\, 0} \sum_{k=1}^n \binom{n}{k} x^{n-k}h^{k-1} \\
-					= \lim_{h \,\to\, 0} \binom{n}{1} x^{n-1} + \sum_{k=2}^n
-					x^{n-k}h^{k-1} \\
-					= nx^{n-1} \\ \nonumber
-					\\
-					\boxed{
 					\derivative{x^n} =
 						\begin{cases}
 							0 & \text{if } n = 0 \\
 							nx^{n-1} & \text{if } n
 							\neq 0
 						\end{cases}
-					}
 				\end{gather}
 			\subsubsection{Product Rule}
 				\begin{gather}
@@ -135,6 +118,7 @@
 					- \frac{1}{x^2}}} \\
 					\derivative{\arccot x} = \frac{-1}{x^2 + 1}
 				\end{gather}
+
 	\section{Integration}
 		\subsection{Methods}
 			\subsubsection{Linearity}

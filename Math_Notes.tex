@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+\title{Miscellaneous Math Notes}
+\author{Roy Magen}
+\date{ }
+\begin{document}
+	
+	\begin{titlepage} \maketitle \end{titlepage}
+
+	\paragraph{Complex Conjugate}
+		The complex number $ z = a + ib $ has conjugate $ \overline{z} = a - ib
+		$ where $ a,b \in \mathbb{R} $.
+		\begin{gather}
+			z \overline{z} = (a + ib)(a - ib) = a^2 + b^2 \\
+			\overline{re^{i \theta}} = re^{-i \theta}
+		\end{gather}
+
+	\paragraph{Transpose of a Matrix}
+		The transpose of the $ n \times m $ matrix $ A $ is the $ m \times n $ matrix $ A^T $ created by one of the
+		following operations
+		\begin{itemize}
+			\item reflecting $ A $ over its main diagonal
+			\item swapping the rows and columns of $ A $
+		\end{itemize}
+		$ A_{ij} = \left( A^T \right)_{ji} $ where the
+		element $ \text{matrix}_{ab} $ is the entry at row $ a $
+		and column $ b $ of the matrix.
+		\begin{gather}
+			A \text{ is an } n \times m \text{ matrix } \iff A^T \text{ is an }
+			m \times n \text{ matrix.}
+		\end{gather}
+
+	\paragraph{Conjugate Transpose}
+		The conjugate transpose of the $ n \times m $ matrix $ A $ is the $ m
+		\times n $ matrix $ A^* $ formed by taking the complex conjugate of each
+		entry of the transpose matrix $ A^T $
+		\begin{gather}
+			A^* = \left( \overline{A} \right)^T = \overline{A^T}
+		\end{gather}
+	
+	\paragraph{Unitary and Orthogonal Matrices}
+		A square matrix $ U $ is unitary if $ U^*U = UU^* = I $ where $ I $ is
+		the identity matrix. \\
+		If $ U $ has only real entries, it is an orthogonal matrix, $ U^TU =
+		UU^T = I $.
+
+\end{document}
