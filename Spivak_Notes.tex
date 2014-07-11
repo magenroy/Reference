@@ -10,20 +10,27 @@
 
 \newtheorem{lrule}{Rule}
 \newtheorem{app}{Application}
-\newtheorem{prem}{Premise}
+\newtheorem{defn}{Definition}
+\newtheorem*{prem}{Premise}
 \newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
 
 %\newtheorem{prop}{Property}
 %\newtheorem{lemma}{Lemma}
-%\newtheorem{cor}{Corollary}
 %\newtheorem{axiom}{Axiom}
 
-\newcommand{\fromb}[3]{\overbrace{#3}^{#1~#2}}
-\newcommand{\from}[3]{\overset{#1~#2}{#3}}
-\newcommand{\byb}[3]{\underbrace{#3}_{#1~#2}}
-\newcommand{\by}[3]{\underset{#1~#2}{#3}}
+\newcommand{\fromb}[3]{\overbrace{#3}^{#1~\ref{#2}}}
+\newcommand{\from}[3]{\overset{#1~\ref{#2}}{#3}}
+\newcommand{\byb}[3]{\underbrace{#3}_{#1~\ref{#2}}}
+\newcommand{\by}[3]{\underset{#1~\ref{#2}}{#3}}
 
 \begin{document}
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+\tableofcontents
+\pagebreak
 
 % each property should be labeled as one (perhaps make a property environment)
 % (as in book)
@@ -32,46 +39,122 @@
     \subsection{Basic Properties of Numbers}
     \newcommand{\nums}{\{\text{ numbers }\}}
     All variables are assumed to be numbers.
-	\subsubsection{Properties of Addition}
+	%\subsubsection{Properties of Addition}
 	    \begin{lrule}\label{addassoc} $ \forall (a,b,c) : \quad a + (b + c) = (a + b) + c $ \end{lrule}
 	    \begin{lrule}\label{addcomm} $ \forall (a,b) : \quad a + b = b + a $ \end{lrule}
 	    \begin{lrule}\label{addid} $ \forall a : \quad a + 0 = 0 + a = a $ \end{lrule}
-	    \begin{lrule}\label{addinv} $ \forall a \,\exists (-a) : \quad a + (-a) = (-a) + a = 0 $ \end{lrule}
+	    \begin{lrule}\label{addinv} $ \forall a \;\exists (-a) : \quad a + (-a) = (-a) + a = 0 $ \end{lrule}
+	    \begin{defn} $ a - b \overset{def}{=} a + (-b) $ \end{defn}
 
 	    \begin{thm}
 		$ \forall a : \quad a + x = a \iff x = 0 $
 		\begin{proof}
 		    \begin{align}
 			a + x &= a \\
-			\from{Function}{(-a) +}{(-a) + (a + x)} &= \from{Function}{(-a) +}{(-a) + a} \\
-			\from{Rule}{\ref{addassoc}}{((-a) + a) + x} &= \from{Rule}{\ref{addinv}}{0} \\
-			\from{Rule}{\ref{addinv}}{0 + x} &= 0 \\
-			\from{Rule}{\ref{addid}}{x} &= 0
+			(-a) + (a + x) &= (-a) + a \\
+			(\fromb{Rule}{addassoc}{(-a) + a}) + x &= \from{Rule}{addinv}{0} \\
+			\from{Rule}{addinv}{0} + x &= 0 \\
+			\from{Rule}{addid}{x} &= 0
 		    \end{align}
 		\end{proof}
 	    \end{thm}
 
-	\subsubsection{Properties of Multiplication}
+	%\subsubsection{Properties of Multiplication}
 	    \begin{lrule}\label{multassoc} $ \forall (a,b,c) : \quad a(bc) = (bc)a $ \end{lrule} 
 	    \begin{lrule}\label{multcomm} $ \forall (a,b,c) : \quad ab = ba $ \end{lrule}
 	    \begin{lrule}\label{multid} $ \forall a : \quad a \cdot 1 = 1 \cdot a = a $ \end{lrule}
-	    \begin{prem} $ \forall a : \quad 1 \neq 0 $ \end{prem}
-	    \begin{lrule}\label{multinv} $ \forall a \neq 0 \,\exists a^{-1} : \quad aa^{-1} = a^{-1}a = 1 $ \end{lrule}
+	    \begin{prem} $ 1 \neq 0 $ \end{lrule}
+	    \begin{lrule}\label{multinv} $ \forall a \neq 0 \;\exists a^{-1} : \quad aa^{-1} = a^{-1}a = 1 $ \end{lrule}
 
-	    \begin{thm}
-		$ \forall (a,b,c) : \quad ab = ac \wedge a \neq 0 \iff b = c $
+	    \begin{thm}\label{eqfactors}
+		$ \forall a : \quad ab = ac \wedge a \neq 0 \iff b = c $
 		\begin{proof}
 		    \begin{align}
 			ab &= ac \quad \wedge a \neq 0 \\
-			\from{Function}{a^{-1} \cdot}{a^{-1}(ab)} &= \from{Function}{a^{-1} \cdot}{a^{-1}(ac)} \quad \wedge a \neq 0 \\
-			\from{Rule}{\ref{multcomm}}{(a^{-1}a)b} &= \from{Rule}{\ref{multcomm}}{(a^{-1}a)c} \quad \wedge a \neq 0 \\
-			\from{Rule}{\ref{multinv}}{1 \cdot b} &= \from{Rule}{\ref{multinv}}{1 \cdot c} \\
-			\from{Rule}{\ref{multid}}{b} &= \from{Rule}{\ref{multid}}{c}
+			a^{-1}(ab) &= a^{-1}(ac) \quad \wedge a \neq 0 \\
+			(\fromb{Rule}{multassoc}{a^{-1}a})b &= (\fromb{Rule}{multassoc}{a^{-1}a})c \quad \wedge a \neq 0 \\
+			\fromb{Rule}{multinv}{1} \cdot b &= \fromb{Rule}{multinv}{1} \cdot c \\
+			\from{Rule}{multid}{b} &= \from{Rule}{multid}{c}
 		    \end{align}
 		\end{proof}
 	    \end{thm}
 
-	\subsubsection{Combined Properties}
+	%\subsubsection{Combined Properties}
 	    \begin{lrule}\label{distrib} $ \forall (a,b,c) : \quad a(b + c) = ab + ac $ \end{lrule}
+
+	    \begin{thm}\label{multby0}
+		$ \forall a : \quad 0a = 0 $
+		\begin{proof}
+		    \begin{align}
+			0a + 0a &= 0a + 0a \\
+			0a + 0a &= \from{Rule}{distrib}{a(0 + 0)} \\
+			0a + 0a &= \from{Rule}{addid}{0a} \\
+			0a &= 0
+		    \end{align}
+		\end{proof}
+	    \end{thm}
+
+	    \begin{thm}\label{prodof0}
+		$ ab = 0 \iff (a = 0 \vee b = 0) $
+		\begin{proof}
+		    \begin{align}
+			a = 0 \wedge b = 0 &\from{Theorem}{multby0}{\iff} ab = 0 \\ % consider reformatting
+			ab &= 0 \quad \wedge a \neq 0 \\
+			a^{-1}(ab) &= 0a^{-1} \quad \wedge a \neq 0 \\
+			(\fromb{Rule}{multassoc}{a^{-1}a})b &= \from{Theorem}{multby0}{0} \quad \wedge a \neq 0 \\
+			\fromb{Rule}{multinv}{1}b &= 0 \\
+			\from{Rule}{multid}{b} &= 0
+		    \end{align}
+		\end{proof}
+	    \end{thm}
+
+	    \begin{thm}\label{subtreq}
+		$ a - b = b - a \iff a = b $
+		\begin{proof}
+		    \begin{align}
+			a - b &= b - a \\
+			(a - b) + b &= (b - a) + b \\
+			a - (\fromb{Rule}{addassoc}{(-b) + b}) &= \fromb{Rule}{addcomm}{b + (b - a)} \\
+			a - \from{Rule}{addinv}{0} &= (\fromb{Rule}{addassoc}{b + b}) - a \\
+			\from{Rule}{addid}{a} &= (b + b) - a \\
+			a + a &= ((b + b) - a) + a \\
+			\from{Rule}{distrib}{a(1 + 1)} &= \from{Rule}{distrib}{b(1 + 1)} + (\fromb{Rule}{addassoc}{(-a) + a}) \\
+			a(1 + 1) &= b(1 + 1) + \from{Rule}{addinv}{0} \\
+			a(1 + 1) = b(1 + 1) &\from{Theorem}{eqfactors}{\iff} a = b
+		    \end{align}
+		\end{proof}
+	    \end{thm}
+
+	    \begin{thm}\label{distrofneg}
+		$ \forall (a,b) : \quad (-a)b = -(ab) $
+		\begin{proof}
+		    \begin{align}
+			(-a)b + ab &= (-a)b + ab \\
+			(-a)b + ab &= \from{Rule}{distrib}{((-a) + a)b} \\
+			(-a)b + ab &= \fromb{Rule}{addinv}{0}b \\
+			(-a)b + ab &= \from{Theorem}{multby0}{0} \\
+			((-a)b + ab) + (-(ab)) &= 0 + (-(ab)) \\
+			(-a)b + (\fromb{Rule}{addassoc}{ab +(-(ab))}) &= \from{Rule}{addid}{-(ab)} \\
+			(-a)b + \from{Rule}{addinv}{0} &= -(ab) \\
+			\from{Rule}{addid}{(-a)b} &= -(ab)
+		    \end{align}
+		\end{proof}
+	    \end{thm}
+	    
+	    \begin{thm}\label{prodofnegs}
+		$ \forall (a,b) : \quad (-a)(-b) = ab $
+		\begin{proof}
+		    \begin{align}
+			(-a)(-b) + (-a)b &= (-a)(-b) + (-a)b \\
+			(-a)(-b) + (\from{Theorem}{distrofneg}{-(ab)}) &= \from{Rule}{distrib}{-a((-b) + b)} \\
+			(-a)(-b) - ab &= -a(\fromb{Rule}{addinv}{0}) \\
+			(-a)(-b) - ab &= \from{Theorem}{multby0}{0} \\
+			((-a)(-b) - ab) + ab &= 0 + ab \\
+			(-a)(-b) + (\fromb{Rule}{addassoc}{(-(ab)) + ab}) &= \from{Rule}{addid}{ab} \\
+			(-a)(-b) + \from{Rule}{addinv}{0} &= ab \\
+			\from{Rule}{addid}{(-a)(-b)} &= ab
+		    \end{align}
+		\end{proof}
+	    \end{thm}
 
 \end{document}
